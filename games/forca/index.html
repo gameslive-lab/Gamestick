@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link para a fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Jogo da Forca</h1>
+
+    <!-- Tela para inserir a palavra secreta -->
+    <div id="inserir-palavra-container">
+        <p>Jogador 1: Insira a palavra para o jogador 2 adivinhar:</p>
+        <input type="password" id="input-palavra-secreta" placeholder="Digite a palavra secreta">
+        <button id="botao-comecar">Começar Jogo</button>
+    </div>
+
+    <!-- Tela do jogo da forca -->
+    <div id="jogo-container" style="display: none;">
+        <!-- Div para exibir a palavra oculta -->
+        <div id="palavra-oculta">_ _ _ _ _ _</div>
+
+        <!-- Campo para o jogador inserir letras -->
+        <input type="text" id="input-letra" maxlength="1" placeholder="Letra">
+        <button id="botao-tentar">Tentar</button>
+
+        <!-- Imagem da forca -->
+        <div id="forca-container">
+            <img id="imagem-forca" src="img/forca0.png" alt="Forca">
+        </div>
+
+        <!-- Div para mostrar as letras erradas -->
+        <div id="letras-erradas">Letras erradas: </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

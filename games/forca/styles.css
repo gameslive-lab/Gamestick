@@ -1,0 +1,111 @@
+/* Geral */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 3em;
+    color: #333;
+}
+
+#inserir-palavra-container, #jogo-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#inserir-palavra-container p, #palavra-oculta, #letras-erradas {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#palavra-oculta {
+    font-size: 2.5em;
+    letter-spacing: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+#letras-erradas {
+    margin-top: 20px;
+    color: #E63946;
+    font-weight: bold;
+}
+
+input, button {
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Campo de input da palavra secreta */
+#input-palavra-secreta {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#botao-comecar {
+    background-color: #457B9D;
+    color: white;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#botao-comecar:hover {
+    background-color: #1D3557;
+}
+
+/* Campo de input e botão para tentar uma letra */
+#input-letra {
+    width: 60px;
+    text-align: center;
+}
+
+#botao-tentar {
+    background-color: #457B9D;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#botao-tentar:hover {
+    background-color: #1D3557;
+}
+
+#forca-container {
+    margin-top: 30px;
+}
+
+#imagem-forca {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Layout responsivo */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    #palavra-oculta {
+        font-size: 2em;
+    }
+}
