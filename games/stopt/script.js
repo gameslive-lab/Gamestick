@@ -1,14 +1,15 @@
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let currentLetter = "";
 
-document.getElementById("generate-letter").addEventListener("click", generateLetter);
-document.getElementById("stop-button").addEventListener("click", handleSubmit);
-document.getElementById("restart-button").addEventListener("click", restartGame);
-
 // Inicializa o Firebase (certifique-se de que esta parte esteja correta)
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+document.getElementById("generate-letter").addEventListener("click", generateLetter);
+document.getElementById("stop-button").addEventListener("click", handleSubmit);
+document.getElementById("restart-button").addEventListener("click", restartGame);
+
+// Função para gerar uma letra
 function generateLetter() {
     const randomIndex = Math.floor(Math.random() * letters.length);
     currentLetter = letters[randomIndex];
@@ -16,11 +17,9 @@ function generateLetter() {
 
     // Envia a letra gerada para o Firebase
     sendLetterToFirebase(currentLetter);
-
-    // Inicia o timer de 3 segundos
-    startTimer(3);
 }
 
+// Função para enviar a letra para o Firebase
 function sendLetterToFirebase(letter) {
     set(ref(database, 'letters/current'), {
         letter: letter
@@ -29,6 +28,19 @@ function sendLetterToFirebase(letter) {
     });
 }
 
+// Escuta as mudanças na letra no Firebase
+onValue(ref(database, 'letters/current'), (snapshot) => {
+    const data = snapshot.val();
+    if (data && data.letter) {
+        currentLetter = data.letter;
+        document.getElementById("current-letter").textContent = currentLetter;
+
+        // Inicia o timer de 3 segundos
+        startTimer(3);
+    }
+});
+
+// Função para iniciar o timer
 function startTimer(seconds) {
     const timer = document.getElementById("timer");
     let timeLeft = seconds;
