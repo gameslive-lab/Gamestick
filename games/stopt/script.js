@@ -26,12 +26,15 @@ function generateLetter() {
     startTimer(3);
 }
 
-// Função para ouvir mudanças na letra no Firebase
-onValue(ref(getDatabase(), 'currentLetter'), (snapshot) => {
-    const letter = snapshot.val();
-    if (letter) {
-        currentLetter = letter;
+// Escuta as mudanças na letra no Firebase
+onValue(ref(database, 'letters/current'), (snapshot) => {
+    const data = snapshot.val();
+    if (data && data.letter) {
+        currentLetter = data.letter;
         document.getElementById("current-letter").textContent = currentLetter;
+
+        // Inicia o timer de 3 segundos
+        startTimer(3);
     }
 });
 
