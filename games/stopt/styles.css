@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #83a4d4, #b6fbff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.6s ease;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 450px;
+  text-align: center;
+  transition: transform 0.4s ease;
+  animation: fadeIn 1s ease-in-out;
+}
+
+header h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2em;
+  letter-spacing: 1px;
+}
+
+.game {
+  margin-top: 20px;
+}
+
+.letter-section h2 {
+  color: #333;
+  font-size: 1.5em;
+  animation: bounce 1.5s infinite;
+}
+
+#generate-letter {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#generate-letter:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+#stop-button {
+  background-color: #FF6347;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#stop-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+#restart-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#restart-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.results {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  background-color: rgba(240, 240, 240, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  transition: opacity 0.5s ease;
+}
+
+.timer {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #f39c12;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animated-button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}

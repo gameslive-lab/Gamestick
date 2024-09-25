@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo Stop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Jogo Stop!</h1>
+    </header>
+    
+    <div class="game">
+      <div class="letter-section">
+        <h2>Letra Atual: <span id="current-letter">A</span></h2>
+        <button id="generate-letter" class="animated-button">Gerar Letra</button>
+        <div id="timer" class="timer"></div>
+      </div>
+
+      <form id="stop-form">
+        <div class="input-group">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" class="form-input" placeholder="Ex: Ana">
+        </div>
+
+        <div class="input-group">
+          <label for="fruta">Fruta:</label>
+          <input type="text" id="fruta" class="form-input" placeholder="Ex: Abacaxi">
+        </div>
+
+        <div class="input-group">
+          <label for="cor">Cor:</label>
+          <input type="text" id="cor" class="form-input" placeholder="Ex: Azul">
+        </div>
+
+        <div class="input-group">
+          <label for="objeto">Objeto:</label>
+          <input type="text" id="objeto" class="form-input" placeholder="Ex: Abajur">
+        </div>
+
+        <div class="input-group">
+          <label for="cep">CEP (Cidade, Estado, País):</label>
+          <input type="text" id="cep" class="form-input" placeholder="Ex: São Paulo">
+        </div>
+
+        <div class="input-group">
+          <label for="fnd">FND (Filme, Novela, Desenho):</label>
+          <input type="text" id="fnd" class="form-input" placeholder="Ex: Frozen">
+        </div>
+
+        <button type="submit" id="stop-button" class="animated-button">Stop</button>
+      </form>
+
+      <div id="results" class="results" style="display: none;"></div>
+
+      <button id="restart-button" class="animated-button" style="display:none;">Reiniciar Jogo</button>
+    </div>
+  </div>
+
+  <!-- Firebase App (use a versão compatível via CDN) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+    import { getDatabase } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
+    // Configuração Firebase (substitua pelos seus valores do Firebase Console)
+    const firebaseConfig = {
+      apiKey: "AIzaSyBlpKkao5lSnWjbowVbi58auUdaKMfPQ5M",
+      authDomain: "stop-a5326.firebaseapp.com",
+      databaseURL: "https://stop-a5326-default-rtdb.firebaseio.com",
+      projectId: "stop-a5326",
+      storageBucket: "stop-a5326.appspot.com",
+      messagingSenderId: "155692361842",
+      appId: "1:155692361842:web:581fbc770e89a9d46a3aeb",
+      measurementId: "G-FKKWWHG6PN"
+    };
+
+    // Inicializa o Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(); // Obtém a instância do banco de dados
+
+    // Adicione o seu script.js aqui se necessário
+    import('./script.js');
+  </script>
+</body>
+</html>
