@@ -26,17 +26,7 @@ function generateLetter() {
     startTimer(3);
 }
 
-// Escuta as mudanças na letra no Firebase
-onValue(ref(database, 'letters/current'), (snapshot) => {
-    const data = snapshot.val();
-    if (data && data.letter) {
-        currentLetter = data.letter;
-        document.getElementById("current-letter").textContent = currentLetter;
 
-        // Inicia o timer de 3 segundos
-        startTimer(3);
-    }
-});
 
 // Timer e controle de inputs
 function startTimer(seconds) {
@@ -70,7 +60,17 @@ function enableInputs() {
         input.disabled = false;
     });
 }
+// Escuta as mudanças na letra no Firebase
+onValue(ref(database, 'letters/current'), (snapshot) => {
+    const data = snapshot.val();
+    if (data && data.letter) {
+        currentLetter = data.letter;
+        document.getElementById("current-letter").textContent = currentLetter;
 
+        // Inicia o timer de 3 segundos
+        startTimer(3);
+    }
+});
 // Função para tratar o envio do formulário
 function handleSubmit(event) {
     event.preventDefault();
