@@ -1,46 +1,41 @@
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let currentLetter = "";
 
-// Inicializa o Firebase (certifique-se de que esta parte esteja correta)
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
+// Adicione eventos de clique
 document.getElementById("generate-letter").addEventListener("click", generateLetter);
 document.getElementById("stop-button").addEventListener("click", handleSubmit);
 document.getElementById("restart-button").addEventListener("click", restartGame);
 
-// Função para gerar uma letra
+// Função para gerar a letra e atualizar o Firebase
 function generateLetter() {
     const randomIndex = Math.floor(Math.random() * letters.length);
     currentLetter = letters[randomIndex];
     document.getElementById("current-letter").textContent = currentLetter;
 
-    // Envia a letra gerada para o Firebase
-    sendLetterToFirebase(currentLetter);
+    // Atualiza a letra no Firebase
+    set(ref(getDatabase(), 'currentLetter'), currentLetter)
+        .then(() => {
+            console.log("Letra enviada para o Firebase:", currentLetter);
+        })
+        .catch((error) => {
+            console.error("Erro ao enviar letra para o Firebase:", error);
+        });
+
+    startTimer(3);
 }
 
-// Função para enviar a letra para o Firebase
-function sendLetterToFirebase(letter) {
-    set(ref(database, 'letters/current'), {
-        letter: letter
-    }).catch((error) => {
-        console.error("Erro ao gravar no Firebase Database:", error);
-    });
-}
-
-// Escuta as mudanças na letra no Firebase
-onValue(ref(database, 'letters/current'), (snapshot) => {
-    const data = snapshot.val();
-    if (data && data.letter) {
-        currentLetter = data.letter;
+// Função para ouvir mudanças na letra no Firebase
+onValue(ref(getDatabase(), 'currentLetter'), (snapshot) => {
+    const letter = snapshot.val();
+    if (letter) {
+        currentLetter = letter;
         document.getElementById("current-letter").textContent = currentLetter;
-
-        // Inicia o timer de 3 segundos
-        startTimer(3);
     }
 });
 
-// Função para iniciar o timer
+// Timer e controle de inputs
 function startTimer(seconds) {
     const timer = document.getElementById("timer");
     let timeLeft = seconds;
@@ -73,6 +68,7 @@ function enableInputs() {
     });
 }
 
+// Função para tratar o envio do formulário
 function handleSubmit(event) {
     event.preventDefault();
 
@@ -107,6 +103,7 @@ function handleSubmit(event) {
     document.getElementById("restart-button").style.display = "block";
 }
 
+// Função para reiniciar o jogo
 function restartGame() {
     // Limpa os inputs
     document.querySelectorAll(".form-input").forEach(input => {
