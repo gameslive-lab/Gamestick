@@ -1,9 +1,8 @@
-// Importar Firebase
+// Importar as funções necessárias do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
-// Sua configuração do Firebase
+// Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBlpKkao5lSnWjbowVbi58auUdaKMfPQ5M",
     authDomain: "stop-a5326.firebaseapp.com",
@@ -13,15 +12,6 @@ const firebaseConfig = {
     messagingSenderId: "155692361842",
     appId: "1:155692361842:web:581fbc770e89a9d46a3aeb",
     measurementId: "G-FKKWWHG6PN"
-};
-
-// Importar as funções necessárias do Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
-
-// Configuração do Firebase
-const firebaseConfig = {
-    // ... sua configuração aqui
 };
 
 // Inicializa o Firebase
