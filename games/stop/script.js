@@ -1,8 +1,9 @@
-// Importar as funções necessárias do Firebase
+// Importar Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
-// Configuração do Firebase
+// Sua configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBlpKkao5lSnWjbowVbi58auUdaKMfPQ5M",
     authDomain: "stop-a5326.firebaseapp.com",
@@ -14,9 +15,10 @@ const firebaseConfig = {
     measurementId: "G-FKKWWHG6PN"
 };
 
-// Inicializa o Firebase
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const analytics = getAnalytics(app);
+const db = getDatabase();
 
 // Variáveis Globais
 const startButton = document.getElementById('start-btn');
@@ -25,13 +27,10 @@ const stopForm = document.getElementById('stop-form');
 const letterDisplay = document.getElementById('letter-display');
 const timerDisplay = document.getElementById('timer');
 
-// Escuta alterações na letra atual
-const letterRef = ref(database, 'currentLetter');
-onValue(letterRef, (snapshot) => {
-    const currentLetter = snapshot.val();
-    if (currentLetter) {
-        letterDisplay.innerText = currentLetter;
-    }
+// Função para inicializar o jogo
+startButton.addEventListener('click', () => {
+    document.getElementById('game-area').style.display = 'block';
+    startButton.style.display = 'none';
 });
 
 // Função para gerar uma letra aleatória
@@ -47,11 +46,7 @@ function randomizeLetter() {
     const randomIndex = Math.floor(Math.random() * alphabet.length);
     const randomLetter = alphabet[randomIndex];
     letterDisplay.innerText = randomLetter;
-
-    // Armazena a letra no Firebase
-    set(letterRef, randomLetter);
 }
-
 
 // Função para iniciar o timer
 function startTimer(seconds) {
