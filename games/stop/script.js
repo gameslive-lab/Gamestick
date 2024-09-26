@@ -100,7 +100,7 @@ function handleStop() {
         .map(input => `<div class="response-item">${input.placeholder}: ${input.value || "Não preenchido"}</div>`)
         .join(''); // Modificado para incluir a classe
 		
-		disableInputs(true //disabilitar os inputs
+		disableInputs(true) //disabilitar os inputs
 		
     // Mostrar respostas
     const responsesDiv = document.getElementById('responses');
