@@ -37,6 +37,7 @@ startButton.addEventListener('click', () => {
 generateLetterButton.addEventListener('click', () => {
     randomizeLetter();
     disableInputs(true); // Desabilita inputs e botão Stop durante o timer
+	generateLetterButton.disabled = true;
 });
 
 // Função para gerar uma letra aleatória e armazená-la no Firebase
@@ -98,7 +99,9 @@ function handleStop() {
     const responses = Array.from(stopForm.querySelectorAll('input'))
         .map(input => `<div class="response-item">${input.placeholder}: ${input.value || "Não preenchido"}</div>`)
         .join(''); // Modificado para incluir a classe
-
+		
+		disableInputs(true //disabilitar os inputs
+		
     // Mostrar respostas
     const responsesDiv = document.getElementById('responses');
     responsesDiv.innerHTML = responses;
