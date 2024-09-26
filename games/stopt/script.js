@@ -1,5 +1,6 @@
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
+const db = getDatabase(); // Obtém a instância do banco de dados
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let currentLetter = "";
 
@@ -14,27 +15,30 @@ function generateLetter() {
     currentLetter = letters[randomIndex];
     document.getElementById("current-letter").textContent = currentLetter;
 
-    // Atualiza a letra no Firebase
-    set(ref(getDatabase(), 'currentLetter'), currentLetter)
-        .then(() => {
-            console.log("Letra enviada para o Firebase:", currentLetter);
-        })
-        .catch((error) => {
-            console.error("Erro ao enviar letra para o Firebase:", error);
-        });
-
-    // Removido startTimer() daqui
+    // Atualiza a letra e o estado do jogo no Firebase
+    set(ref(db, 'game'), {
+        currentLetter: currentLetter,
+        state: 'playing' // Estado inicial do jogo
+    }).then(() => {
+        console.log("Estado do jogo e letra atualizados no Firebase:", currentLetter);
+    }).catch((error) => {
+        console.error("Erro ao enviar estado do jogo para o Firebase:", error);
+    });
 }
 
-// Função para ouvir mudanças na letra no Firebase
-onValue(ref(getDatabase(), 'currentLetter'), (snapshot) => {
-    const letter = snapshot.val();
-    if (letter) {
-        currentLetter = letter;
+// Função para ouvir mudanças na letra e no estado do jogo no Firebase
+onValue(ref(db, 'game'), (snapshot) => {
+    const gameData = snapshot.val();
+    if (gameData) {
+        currentLetter = gameData.currentLetter;
         document.getElementById("current-letter").textContent = currentLetter;
 
-        // Inicia o timer de 3 segundos quando uma nova letra for recebida
-        startTimer(3);
+        // Se o estado do jogo for "stopped", todos entram no modo de parada
+        if (gameData.state === 'stopped') {
+            handleStopState();
+        } else if (gameData.state === 'playing') {
+            resetGameState();
+        }
     }
 });
 
@@ -102,12 +106,30 @@ function handleSubmit(event) {
     });
     document.getElementById("stop-button").disabled = true;
 
-    // Exibe o botão de reiniciar
-    document.getElementById("restart-button").style.display = "block";
+    // Atualiza o estado do jogo para "stopped" no Firebase
+    set(ref(db, 'game/state'), 'stopped')
+        .then(() => {
+            console.log("Jogo parado.");
+        })
+        .catch((error) => {
+            console.error("Erro ao atualizar estado do jogo para 'stopped':", error);
+        });
 }
 
 // Função para reiniciar o jogo
 function restartGame() {
+    // Atualiza o estado do jogo para "playing" no Firebase
+    set(ref(db, 'game/state'), 'playing')
+        .then(() => {
+            console.log("Jogo reiniciado.");
+        })
+        .catch((error) => {
+            console.error("Erro ao atualizar estado do jogo para 'playing':", error);
+        });
+}
+
+// Função para resetar o estado do jogo
+function resetGameState() {
     // Limpa os inputs
     document.querySelectorAll(".form-input").forEach(input => {
         input.value = "";
@@ -123,4 +145,21 @@ function restartGame() {
     document.getElementById("stop-button").disabled = false;
     document.getElementById("restart-button").style.display = "none";
     document.getElementById("current-letter").textContent = "A";
+}
+
+// Função para entrar no estado de "stopped"
+function handleStopState() {
+    // Exibe os resultados para todos
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.style.display = "block";
+    resultsDiv.style.opacity = "1";
+
+    // Desativa todos os inputs e o botão "Stop"
+    document.querySelectorAll(".form-input").forEach(input => {
+        input.disabled = true;
+    });
+    document.getElementById("stop-button").disabled = true;
+
+    // Exibe o botão de reiniciar
+    document.getElementById("restart-button").style.display = "block";
 }
