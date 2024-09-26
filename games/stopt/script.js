@@ -22,8 +22,6 @@ function generateLetter() {
         .catch((error) => {
             console.error("Erro ao enviar letra para o Firebase:", error);
         });
-
-    // Removido startTimer() daqui
 }
 
 // Função para ouvir mudanças na letra no Firebase
@@ -43,12 +41,12 @@ function startTimer(seconds) {
     const timer = document.getElementById("timer");
     let timeLeft = seconds;
 
-    timer.textContent = Prepare-se: ${timeLeft}s;
+    timer.textContent = `Prepare-se: ${timeLeft}s`; // Correção aqui
 
     const countdown = setInterval(() => {
         timeLeft--;
         if (timeLeft > 0) {
-            timer.textContent = Prepare-se: ${timeLeft}s;
+            timer.textContent = `Prepare-se: ${timeLeft}s`; // Correção aqui
         } else {
             clearInterval(countdown);
             timer.textContent = '';
@@ -84,7 +82,7 @@ function handleSubmit(event) {
 
     // Exibe os resultados
     const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = 
+    resultsDiv.innerHTML = `
         <h3>Respostas:</h3>
         <p><strong>Nome:</strong> ${nome}</p>
         <p><strong>Fruta:</strong> ${fruta}</p>
@@ -92,7 +90,7 @@ function handleSubmit(event) {
         <p><strong>Objeto:</strong> ${objeto}</p>
         <p><strong>CEP:</strong> ${cep}</p>
         <p><strong>FND:</strong> ${fnd}</p>
-    ;
+    `; // Correção aqui
     resultsDiv.style.display = "block";
     resultsDiv.style.opacity = "1";
 
