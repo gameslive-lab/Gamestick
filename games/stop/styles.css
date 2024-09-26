@@ -1,0 +1,101 @@
+/* Estilo Global */
+* {
+    box-sizing: border-box; /* Define o modelo de caixa para incluir padding e border no tamanho total do elemento */
+    margin: 0; /* Remove a margem padrão de todos os elementos */
+    padding: 0; /* Remove o padding padrão de todos os elementos */
+    font-family: 'Poppins', sans-serif; /* Define a fonte padrão para Poppins, com fallback para sans-serif */
+}
+
+body {
+    background: linear-gradient(135deg, #6E8EF9, #6AD2FF); /* Define um fundo com um gradiente diagonal */
+    display: flex; /* Utiliza o Flexbox para alinhar os itens */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+    height: 100vh; /* Define a altura do body como 100% da altura da janela de visualização */
+    color: #333; /* Define a cor do texto como um cinza escuro */
+}
+
+.container {
+    text-align: center; /* Centraliza o texto dentro do container */
+    background-color: #ffffff; /* Define a cor de fundo do container como branca */
+    padding: 30px; /* Adiciona um padding interno de 30px ao redor do container */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave ao container */
+    border-radius: 15px; /* Arredonda os cantos do container */
+    width: 90%; /* Define a largura do container como 90% da largura da tela */
+    max-width: 500px; /* Define uma largura máxima de 500px para o container */
+    position: relative; /* Permite posicionar elementos filhos de forma relativa */
+}
+
+header h1 {
+    font-size: 1.rem; /* Define o tamanho da fonte do título */
+    margin-bottom: 20px; /* Adiciona uma margem inferior de 20px ao título */
+    color: #6E8EF9; /* Define a cor do título como um azul específico */
+}
+
+.btn {
+    background-color: #6E8EF9; /* Define a cor de fundo dos botões como azul */
+    color: white; /* Define a cor do texto dos botões como branco */
+    border: none; /* Remove a borda padrão dos botões */
+    padding: 10px 25px; /* Adiciona padding interno de 10px vertical e 25px horizontal aos botões */
+    font-size: 1.1rem; /* Define o tamanho da fonte dos botões */
+    border-radius: 30px; /* Arredonda os cantos dos botões */
+    cursor: pointer; /* Muda o cursor para uma mão ao passar sobre o botão */
+    transition: background-color 0.3s; /* Define uma transição suave para a cor de fundo ao passar o mouse */
+}
+
+.btn:hover {
+    background-color: #5C76D5; /* Muda a cor de fundo dos botões ao passar o mouse */
+}
+
+.generate-btn {
+    margin-top: 20px; /* Adiciona uma margem superior de 20px ao botão de gerar letra */
+}
+
+.game-area {
+    display: none; /* Oculta a área do jogo inicialmente */
+    margin-top: 30px; /* Adiciona uma margem superior de 30px quando visível */
+}
+
+.letter-display {
+    font-size: 2rem; /* Define um tamanho grande para a letra exibida */
+    font-weight: bold; /* Define a fonte como negrito */
+    color: #6E8EF9; /* Define a cor da letra como azul */
+    margin-bottom: 10px; /* Adiciona uma margem inferior de 20px à letra */
+}
+
+.timer {
+    font-size: 1.5rem; /* Define um tamanho médio para o timer */
+    margin-bottom: 20px; /* Adiciona uma margem inferior de 20px ao timer */
+    color: #FF6E6E; /* Define a cor do timer como vermelho */
+}
+
+.input-field {
+    width: 100%; /* Define a largura dos campos de input como 100% do container */
+    padding: 10px; /* Adiciona padding interno de 10px aos campos de input */
+    margin: 8px 0; /* Adiciona uma margem vertical de 8px aos campos de input */
+    font-size: 1rem; /* Define o tamanho da fonte dos campos de input */
+    border: 1px solid #ddd; /* Define uma borda leve em torno dos campos de input */
+    border-radius: 10px; /* Arredonda os cantos dos campos de input */
+    transition: border-color 0.3s; /* Define uma transição suave para a cor da borda ao focar */
+}
+
+.input-field:focus {
+    border-color: #6E8EF9; /* Muda a cor da borda para azul quando o campo está em foco */
+    outline: none; /* Remove o contorno padrão ao focar */
+}
+
+.stop-btn {
+    background-color: #FF6E6E; /* Define a cor de fundo do botão Stop como vermelho */
+    margin-top: 15px; /* Adiciona uma margem superior de 15px ao botão Stop */
+}
+
+.stop-btn:hover {
+    background-color: #E65C5C; /* Muda a cor de fundo do botão Stop ao passar o mouse */
+}
+
+/* Centralizar o botão Reiniciar */
+#restart-btn {
+    display: block; /* Faz o botão ser exibido como um bloco */
+    margin: 20px auto; /* Adiciona margens superior e inferior de 20px, e margens laterais automáticas para centralizar */
+    width: 200px; /* Define uma largura fixa de 200px para o botão */
+}
