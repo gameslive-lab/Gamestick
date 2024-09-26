@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Stop!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Jogo Stop!</h1>
+            <button id="start-btn" class="btn">Iniciar Jogo</button>
+        </header>
+        <div class="game-area" id="game-area">
+            <div class="letter-display" id="letter-display">A</div>
+            <button id="generate-letter-btn" class="btn generate-btn">Gerar Letra</button>
+            <div class="timer" id="timer"></div>
+            <form id="stop-form">
+                <input type="text" placeholder="Nome" class="input-field" id="nome" disabled>
+                <input type="text" placeholder="Animal" class="input-field" id="animal" disabled>
+                <input type="text" placeholder="Fruta" class="input-field" id="fruta" disabled>
+                <input type="text" placeholder="Cor" class="input-field" id="cor" disabled>
+                <input type="text" placeholder="Objeto" class="input-field" id="objeto" disabled>
+                <input type="text" placeholder="CEP (Cidade, Lugar ou País)" class="input-field" id="cep" disabled>
+                <input type="text" placeholder="FND (Filme, Novela ou Desenho)" class="input-field" id="fnd" disabled>
+                <button type="submit" class="btn stop-btn" disabled>Stop!</button>
+            </form>
+            <div id="responses" style="display: none; margin-top: 20px;"></div>
+            <button id="restart-btn" class="btn" style="display: none;">Reiniciar Jogo</button>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script> <!-- Modificado para incluir type="module" -->
+</body>
+</html>
