@@ -15,13 +15,17 @@ function generateLetter() {
     document.getElementById("current-letter").textContent = currentLetter;
 
     // Atualiza a letra no Firebase
-    set(ref(getDatabase(), 'currentLetter'), currentLetter)
-        .then(() => {
-            console.log("Letra enviada para o Firebase:", currentLetter);
-        })
-        .catch((error) => {
-            console.error("Erro ao enviar letra para o Firebase:", error);
-        });
+    try {
+        set(ref(getDatabase(), 'currentLetter'), currentLetter)
+            .then(() => {
+                console.log("Letra enviada para o Firebase:", currentLetter);
+            })
+            .catch((error) => {
+                console.error("Erro ao enviar letra para o Firebase:", error);
+            });
+    } catch (error) {
+        console.error("Erro na função generateLetter:", error);
+    }
 }
 
 // Função para ouvir mudanças na letra no Firebase
