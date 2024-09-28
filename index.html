@@ -4,35 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hub de Jogos</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            color: #61dafb;
+        }
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .game {
+            margin: 20px;
+            background: #3c4043;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, background-color 0.3s;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+        }
+        .game:hover {
+            transform: translateY(-5px);
+            background-color: #454a4d;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px 10px 0 0;
+            object-fit: cover;
+        }
+        h2 {
+            margin: 15px 0;
+            font-size: 1.5em;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Escolha um Jogo</h1>
-        </header>
-        <div class="game-list">
-            <div class="game-card">
-                <h2>Stop</h2>
-                <a href="games/stop/index.html">Jogar</a>
-            </div>
-            <div class="game-card">
-                <h2>Jogo da velha</h2>
-                <a href="games/tictac/index.html">Jogar</a>
-            </div>
-             <div class="game-card">
-                <h2>Jogo da forca</h2>
-                <a href="games/forca/index.html">Jogar</a>
-            </div>
-              </div>
-            
-           
-        </div>
-        <footer>
-            <p>&copy; 2024 Hub de Jogos - Desenvolvido por [Nortux]</p>
-        </footer>
-    </div>
 
-    <script src="js/script.js"></script>
+<h1>Bem-vindo ao Hub de Jogos!</h1>
+
+<div class="games-container">
+    <a class="game" href="games/tictac/index.html">
+        <img src="img/tictac.png" alt="Jogo da velha">
+        <h2>Jogo da velha</h2>
+    </a>
+  
+    <!-- Adicione mais jogos aqui -->
+</div>
+
 </body>
 </html>
