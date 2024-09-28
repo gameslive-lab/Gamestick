@@ -17,6 +17,8 @@
         .container {
             display: flex;
             justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
             width: 90%;
             max-width: 500px;
             background-color: #ffffff;
@@ -38,6 +40,7 @@
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             background-color: #f8f8f8;
+            margin: 10px;
         }
         .board p {
             margin: 10px 0 0;
@@ -60,12 +63,13 @@
             cursor: not-allowed;
             opacity: 0.6;
         }
-        #resetButton {
-            display: none;
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .button {
             padding: 10px 20px;
             font-size: 16px;
             font-weight: bold;
@@ -76,8 +80,11 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        #resetButton:hover {
+        .button:hover {
             background-color: #5f6dd8;
+        }
+        #resetButton {
+            display: none;
         }
     </style>
 </head>
@@ -95,7 +102,10 @@
             <div class="emoji">✌️</div>
             <p>Tesoura</p>
         </div>
-        <button id="resetButton" onclick="resetGame()">Reiniciar</button>
+        <div class="button-container">
+            <button id="randomButton" class="button" onclick="selectRandom()">Escolha Aleatória</button>
+            <button id="resetButton" class="button" onclick="resetGame()">Reiniciar</button>
+        </div>
     </div>
 
     <script>
@@ -119,6 +129,17 @@
 
             // Exibe o botão de reiniciar
             document.getElementById('resetButton').style.display = 'block';
+            // Esconde o botão de escolha aleatória
+            document.getElementById('randomButton').style.display = 'none';
+        }
+
+        function selectRandom() {
+            if (selectedChoice !== null) return; // Evita múltiplas seleções
+
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            selectChoice(randomChoice); // Chama a função selectChoice com a escolha aleatória
         }
 
         function resetGame() {
@@ -132,8 +153,9 @@
                 board.classList.remove('disabled');
             });
 
-            // Esconde o botão de reiniciar
+            // Esconde o botão de reiniciar e mostra o de escolha aleatória
             document.getElementById('resetButton').style.display = 'none';
+            document.getElementById('randomButton').style.display = 'block';
         }
     </script>
 </body>
