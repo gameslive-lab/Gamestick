@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Pedra, Papel e Tesoura</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+        }
+        .board {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 2px solid #cccccc;
+            border-radius: 15px;
+            width: 100px;
+            height: 120px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            background-color: #f8f8f8;
+        }
+        .board p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .emoji {
+            font-size: 40px;
+        }
+        .board.active {
+            background-color: #e0e7ff;
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-color: #7f8cfa;
+        }
+        .board:not(.active):hover {
+            transform: scale(1.05);
+        }
+        .board.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        #resetButton {
+            display: none;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #7f8cfa;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #resetButton:hover {
+            background-color: #5f6dd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="rock" class="board" onclick="selectChoice('rock')">
+            <div class="emoji">✊</div>
+            <p>Pedra</p>
+        </div>
+        <div id="paper" class="board" onclick="selectChoice('paper')">
+            <div class="emoji">✋</div>
+            <p>Papel</p>
+        </div>
+        <div id="scissors" class="board" onclick="selectChoice('scissors')">
+            <div class="emoji">✌️</div>
+            <p>Tesoura</p>
+        </div>
+        <button id="resetButton" onclick="resetGame()">Reiniciar</button>
+    </div>
+
+    <script>
+        let selectedChoice = null;
+
+        function selectChoice(choice) {
+            if (selectedChoice !== null) return; // Evita múltiplas seleções
+
+            // Limpa a seleção anterior
+            const boards = document.querySelectorAll('.board');
+            boards.forEach(board => {
+                board.classList.remove('active');
+                board.classList.add('disabled'); // Desativa todos os botões
+            });
+
+            // Marca a escolha atual como ativa e ativa a opção selecionada
+            selectedChoice = choice;
+            const selectedBoard = document.getElementById(choice);
+            selectedBoard.classList.add('active');
+            selectedBoard.classList.remove('disabled');
+
+            // Exibe o botão de reiniciar
+            document.getElementById('resetButton').style.display = 'block';
+        }
+
+        function resetGame() {
+            // Reseta a escolha
+            selectedChoice = null;
+
+            // Remove as classes de todos os botões
+            const boards = document.querySelectorAll('.board');
+            boards.forEach(board => {
+                board.classList.remove('active');
+                board.classList.remove('disabled');
+            });
+
+            // Esconde o botão de reiniciar
+            document.getElementById('resetButton').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
